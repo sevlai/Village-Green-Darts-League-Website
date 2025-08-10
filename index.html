@@ -133,12 +133,18 @@
     const DATA = {
       leagueName: "Village Green Community Darts League",
       formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeDM6h3XBQ-DcwXTZ3vOPA8wvVvvdRG4rrpqJH_kt1MTEulTw/viewform?usp=header",
+      team1: "Team 1 - Tall Boyz",
+      team2: "Team 2 - Master Debaters",
+      team3: "Team 3 - Tech Wizards",
+      team4: "Team 4 - Sleepy Queens",
+      team5: "Team 5 - Who Knew?",
+      team6: "Team 6 - The Justincases",
 
       schedule: [
         // date: YYYY-MM-DD (for nice sorting), time: 24h
-        { date: "2025-09-05", time: "19:00", team: "", "Vs.", team: ""},
-        { date: "2025-09-12", time: "19:00"},
-        { date: "2025-09-19", time: "19:00"}
+        { date: "2025-09-05", matches: [ [team1,team2], [team3,team4] ]},
+        { date: "2025-09-12", matches: [ [team1,team3], [team2,team4] ]},
+        { date: "2025-09-19", matches: [ [team1,team4], [team2,team3] ]}
       ],
 
       standings: {
@@ -170,6 +176,19 @@
         }
       }
     };
+    const SETTINGS = { venue: "VG Community Centre", time: "19;00" };
+    const NIGHTS = [
+      { date: "2025-09-05", matches: [ [team1,team2], [team3,team4] ]},
+        { date: "2025-09-12", matches: [ [team1,team3], [team2,team4] ]},
+        { date: "2025-09-19", matches: [ [team1,team4], [team2,team3] ]}
+      ];
+    const autoSchedule = NIGHTS.flatMap(n =>
+      n.matches.map(([a,b]) => ({
+        date: n.date,
+        time: SETTINGS.time,
+        vs: [a,b]
+      }))
+    
 
     /* ====== RENDERING LOGIC (no need to edit) ====== */
     const $ = sel => document.querySelector(sel);
@@ -182,13 +201,12 @@
     function scheduleTable(rows){
       const sorted = [...rows].sort((a,b)=> a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
       let html = `<table aria-label="Schedule"><thead><tr>
-        <th>Date</th><th>Time</th><th>Team</th><th>VS.</th><th>Team</th></tr></thead><tbody>`;
+        <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
       html += sorted.map(r=>`<tr>
         <td>${fmtDate(r.date)}</td>
         <td>${r.time}</td>
-        <td>${r.team}</td>
-        <td>${r.vs}</td>
-        <td>${r.team}</td>
+        <td>${r.vs[0]} <span class="muted">vs</span> ${r.vs[1]}</td>
+        <td>${r.venue}</td>
       </tr>`).join("");
       html += `</tbody></table>`;
       return html;
@@ -250,7 +268,7 @@
       $("#reportBtn").href = DATA.formUrl || "#";
 
       // Schedule
-      $("#scheduleTable").innerHTML = scheduleTable(DATA.schedule);
+      $("#scheduleTable").innerHTML = scheduleTable(autoSchedule);
 
       // Standings (tabs)
       const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
