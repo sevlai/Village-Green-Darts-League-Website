@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Darts League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Clean & modern system font stack -->
+  <style>
+    :root{
+      --bg: #0f1220;
+      --card: #151a2e;
+      --muted: #8ea0c9;
+      --text: #eaf0ff;
+      --accent: #6aa6ff;
+      --accent-2:#78f0b5;
+      --ring:#2b3a6a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0b0e1a, #0f1220 20%, #0f1220);color:var(--text);font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:sticky;top:0;z-index:10;background:rgba(15,18,32,.7);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #1e2440}
+    .max{max-width:1100px;margin:0 auto;padding:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:var(--shadow)}
+    nav{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
+    nav a{padding:8px 12px;border:1px solid #21305a;border-radius:999px;color:#cfe0ff}
+    nav a:hover{border-color:#3350a8}
+    .hero{padding:34px 0 8px}
+    h1{font-size:28px;margin:0}
+    .sub{color:var(--muted);margin-top:6px}
+
+    section{padding:22px 0}
+    .card{background:var(--card);border:1px solid #1e2440;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
+    h2{margin:0 0 12px 0;font-size:22px}
+    .grid{display:grid;gap:16px}
+    @media(min-width:900px){ .grid-2{grid-template-columns:1fr 1fr} }
+
+    .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .tab, .chip{border:1px solid #22305f;background:#111730;color:#cfe0ff;border-radius:999px;padding:6px 10px;cursor:pointer}
+    .tab.active, .chip.active{background:#162046;border-color:#3959be}
+    .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
+    thead th{position:sticky;top:0;background:#121832;border-bottom:1px solid #253064;padding:10px 8px;text-align:left;font-weight:600;color:#d7e5ff}
+    tbody td{border-bottom:1px solid #1f274b;padding:10px 8px;color:#e8eeff}
+    tbody tr:hover{background:#121832}
+    .num{text-align:right}
+    .pos{width:2.5ch;text-align:right;color:#a9c0ff}
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;background:linear-gradient(135deg,#578bff,#78f0b5);color:#0b0e1a;font-weight:700;padding:10px 14px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer}
+    .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
+    footer{padding:24px 0;color:#9fb0df}
+    .small{font-size:13px;color:#9fb0df}
+    .pill{padding:4px 8px;border-radius:999px;background:#1a2244;border:1px solid #2a3a75;color:#c9d8ff;font-size:12px}
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="max">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1 id="leagueName">Darts League</h1>
+          <div class="sub" id="updated"></div>
+        </div>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#schedule">Schedule</a>
+        <a href="#standings">Standings</a>
+        <a href="#report">Report Match</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max">
+    <!-- SCHEDULE -->
+    <section id="schedule">
+      <div class="card">
+        <h2>Schedule</h2>
+        <div class="small muted">Tip: edit <code>DATA.schedule</code> in the code to update fixtures.</div>
+        <div id="scheduleTable"></div>
+      </div>
+    </section>
+
+    <!-- STANDINGS -->
+    <section id="standings">
+      <div class="card">
+        <h2>Standings</h2>
+        <div class="toolbar" role="tablist" aria-label="Division">
+          <button class="tab active" role="tab" aria-selected="true" id="tab-men">Men</button>
+          <button class="tab" role="tab" aria-selected="false" id="tab-women">Women</button>
+        </div>
+        <div class="toolbar" role="tablist" aria-label="Table type">
+          <button class="chip active" id="chip-teams">Teams</button>
+          <button class="chip" id="chip-individuals">Individuals</button>
+        </div>
+        <div class="grid grid-2">
+          <div>
+            <h3 class="muted">Table</h3>
+            <div id="standingsTable"></div>
+          </div>
+          <div>
+            <h3 class="muted">Notes</h3>
+            <div class="pill">Manual updates</div>
+            <p class="small">Edit <code>DATA.standings.men / women</code> → <code>.teams</code> or <code>.individuals</code>. The table orders by Points (desc), then Diff, then Name.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT -->
+    <section id="report">
+      <div class="card">
+        <h2>Report Match</h2>
+        <p class="small muted">Opens your Google Form in a new tab. Submissions go to your Google Sheet. You review and then update this page’s data block.</p>
+        <div class="actions">
+          <a id="reportBtn" class="btn" target="_blank" rel="noopener noreferrer">Open Match Report Form</a>
+          <span class="pill">No login needed</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="max small">© <span id="year"></span> <span id="leagueNameFoot">Darts League</span> • Built with 💙 and good arrows</div>
+  </footer>
+
+  <script>
+    /* ============================
+       EDIT THIS DATA ONLY
+       ============================ */
+    const DATA = {
+      leagueName: "Riverdale Community Darts League",
+      formUrl: "YOUR_GOOGLE_FORM_URL",
+
+      schedule: [
+        // date: YYYY-MM-DD (for nice sorting), time: 24h
+        { date: "2025-09-10", time: "19:00", home: "Arrows A", away: "Bulls B", venue: "Fox & Hound" },
+        { date: "2025-09-17", time: "19:00", home: "Bulls B", away: "Falcons", venue: "Fox & Hound" },
+        { date: "2025-09-24", time: "19:00", home: "Falcons", away: "Arrows A", venue: "The Green Dart" }
+      ],
+
+      standings: {
+        men: {
+          teams: [
+            // name, played, won, drawn, lost, legsFor, legsAgainst, points
+            { name: "Arrows A", P: 3, W: 3, D: 0, L: 0, LF: 24, LA: 12, Pts: 9 },
+            { name: "Bulls B", P: 3, W: 1, D: 0, L: 2, LF: 16, LA: 20, Pts: 3 },
+            { name: "Falcons", P: 3, W: 0, D: 1, L: 2, LF: 12, LA: 20, Pts: 1 }
+          ],
+          individuals: [
+            // player, team, played, won, lost, legsFor, legsAgainst, points
+            { player: "J. Kim", team: "Arrows A", P: 6, W: 5, L: 1, LF: 15, LA: 7, Pts: 5 },
+            { player: "R. Singh", team: "Bulls B", P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
+            { player: "T. Clark", team: "Falcons", P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
+          ]
+        },
+        women: {
+          teams: [
+            { name: "Valkyries", P: 3, W: 2, D: 1, L: 0, LF: 22, LA: 14, Pts: 7 },
+            { name: "Night Owls", P: 3, W: 1, D: 1, L: 1, LF: 19, LA: 18, Pts: 4 },
+            { name: "Rosehips", P: 3, W: 0, D: 0, L: 3, LF: 11, LA: 20, Pts: 0 }
+          ],
+          individuals: [
+            { player: "S. Lee", team: "Valkyries", P: 6, W: 5, L: 1, LF: 16, LA: 8, Pts: 5 },
+            { player: "A. Gomez", team: "Night Owls", P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
+            { player: "M. Patel", team: "Rosehips", P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
+          ]
+        }
+      }
+    };
+
+    /* ====== RENDERING LOGIC (no need to edit) ====== */
+    const $ = sel => document.querySelector(sel);
+
+    function fmtDate(iso){
+      const d = new Date(iso + "T00:00:00");
+      return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+    }
+
+    function scheduleTable(rows){
+      const sorted = [...rows].sort((a,b)=> a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+      let html = `<table aria-label="Schedule"><thead><tr>
+        <th>Date</th><th>Time</th><th>Home</th><th>Away</th><th>Venue</th></tr></thead><tbody>`;
+      html += sorted.map(r=>`<tr>
+        <td>${fmtDate(r.date)}</td>
+        <td>${r.time}</td>
+        <td>${r.home}</td>
+        <td>${r.away}</td>
+        <td>${r.venue||""}</td>
+      </tr>`).join("");
+      html += `</tbody></table>`;
+      return html;
+    }
+
+    function computeDiff(item){
+      const diff = (item.LF ?? 0) - (item.LA ?? 0);
+      return diff;
+    }
+
+    function standingsTable(items, type){
+      // Sort: Points desc -> Diff desc -> Name/Player asc
+      const sorted = [...items].sort((a,b)=>{
+        const diffA = computeDiff(a), diffB = computeDiff(b);
+        if ((b.Pts ?? 0) !== (a.Pts ?? 0)) return (b.Pts ?? 0) - (a.Pts ?? 0);
+        if (diffB !== diffA) return diffB - diffA;
+        const keyA = (type==="teams" ? a.name : a.player) || "";
+        const keyB = (type==="teams" ? b.name : b.player) || "";
+        return keyA.localeCompare(keyB);
+      });
+
+      let head, rows;
+      if(type==="teams"){
+        head = `<tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+        rows = sorted.map((t,i)=>`
+          <tr>
+            <td class="pos">${i+1}</td>
+            <td>${t.name}</td>
+            <td class="num">${t.P??0}</td><td class="num">${t.W??0}</td><td class="num">${t.D??0}</td><td class="num">${t.L??0}</td>
+            <td class="num">${t.LF??0}</td><td class="num">${t.LA??0}</td>
+            <td class="num">${computeDiff(t)}</td>
+            <td class="num"><strong>${t.Pts??0}</strong></td>
+          </tr>`).join("");
+      }else{
+        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+        rows = sorted.map((p,i)=>`
+          <tr>
+            <td class="pos">${i+1}</td>
+            <td>${p.player}</td><td>${p.team||""}</td>
+            <td class="num">${p.P??0}</td><td class="num">${p.W??0}</td><td class="num">${p.L??0}</td>
+            <td class="num">${p.LF??0}</td><td class="num">${p.LA??0}</td>
+            <td class="num">${computeDiff(p)}</td>
+            <td class="num"><strong>${p.Pts??0}</strong></td>
+          </tr>`).join("");
+      }
+
+      return `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function setActive(btns, active){
+      btns.forEach(b=>b.classList.toggle("active", b===active));
+    }
+
+    function render(){
+      $("#leagueName").textContent = DATA.leagueName;
+      $("#leagueNameFoot").textContent = DATA.leagueName;
+      $("#updated").textContent = "Updated " + new Date().toLocaleString();
+      $("#year").textContent = new Date().getFullYear();
+      $("#reportBtn").href = DATA.formUrl || "#";
+
+      // Schedule
+      $("#scheduleTable").innerHTML = scheduleTable(DATA.schedule);
+
+      // Standings (tabs)
+      const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
+      const chipTeams = $("#chip-teams"), chipInd = $("#chip-individuals");
+      let division = "men";
+      let tableType = "teams";
+
+      function refreshStandings(){
+        const data = DATA.standings[division][tableType];
+        $("#standingsTable").innerHTML = standingsTable(data, tableType);
+      }
+
+      tabMen.addEventListener("click", ()=>{ division="men"; setActive([tabMen,tabWomen], tabMen); refreshStandings(); });
+      tabWomen.addEventListener("click", ()=>{ division="women"; setActive([tabMen,tabWomen], tabWomen); refreshStandings(); });
+      chipTeams.addEventListener("click", ()=>{ tableType="teams"; setActive([chipTeams,chipInd], chipTeams); refreshStandings(); });
+      chipInd.addEventListener("click", ()=>{ tableType="individuals"; setActive([chipTeams,chipInd], chipInd); refreshStandings(); });
+
+      refreshStandings();
+    }
+
+    render();
+  </script>
+</body>
+</html>
