@@ -12,50 +12,416 @@
       --muted: #8ea0c9;
       --text: #eaf0ff;
       --accent: #6aa6ff;
+      --accent-rgb: 106, 166, 255;
       --accent-2:#78f0b5;
       --ring:#2b3a6a;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 16px;
+      --header-bg: rgba(15,18,32,.7);
+      --header-border: #1e2440;
+      --nav-bg: #111730;
+      --nav-border: #22305f;
+      --nav-hover: #1a2a5a;
+      --nav-active: #162046;
+      --table-header: #121832;
+      --table-border: #1f274b;
+      --table-hover: #121832;
+      --btn-gradient: linear-gradient(135deg,#578bff,#78f0b5);
+      --bg-gradient: linear-gradient(180deg,#0b0e1a, #0f1220 20%, #0f1220);
     }
+    
+    /* Theme variations */
+    [data-theme="winter"] {
+      --bg: #0a0f1a;
+      --card: #1a2a3e;
+      --muted: #a8c8ff;
+      --text: #e8f4ff;
+      --accent: #78d8ff;
+      --accent-rgb: 120, 216, 255;
+      --accent-2: #b8e6ff;
+      --ring: #2a4a6a;
+      --shadow: 0 10px 30px rgba(0,0,0,.4), 0 0 20px rgba(120,216,255,.1);
+      --header-bg: rgba(10,15,26,.8);
+      --header-border: #1a2a3e;
+      --nav-bg: #0f1a2a;
+      --nav-border: #2a4a6a;
+      --nav-hover: #1a2a4a;
+      --nav-active: #0f1a3a;
+      --table-header: #0f1a2a;
+      --table-border: #1a2a4a;
+      --table-hover: #0f1a3a;
+      --btn-gradient: linear-gradient(135deg,#78d8ff,#b8e6ff);
+      --bg-gradient: linear-gradient(180deg,#050a15, #0a0f1a 20%, #0a0f1a), 
+                     radial-gradient(circle at 20% 80%, rgba(120,216,255,.1) 0%, transparent 50%),
+                     radial-gradient(circle at 80% 20%, rgba(184,230,255,.05) 0%, transparent 50%);
+    }
+    
+    [data-theme="spring"] {
+      --bg: #0f1a0f;
+      --card: #1a2e2a;
+      --muted: #a8d8a8;
+      --text: #e8ffe8;
+      --accent: #78f0b5;
+      --accent-rgb: 120, 240, 181;
+      --accent-2: #a8f8d5;
+      --ring: #2a6a4a;
+      --shadow: 0 10px 30px rgba(0,0,0,.3), 0 0 20px rgba(120,240,181,.1);
+      --header-bg: rgba(15,26,15,.8);
+      --header-border: #1a2e2a;
+      --nav-bg: #0f1a0f;
+      --nav-border: #2a6a4a;
+      --nav-hover: #1a2a1a;
+      --nav-active: #0f1a1a;
+      --table-header: #0f1a0f;
+      --table-border: #1a2a1a;
+      --table-hover: #0f1a1a;
+      --btn-gradient: linear-gradient(135deg,#78f0b5,#a8f8d5);
+      --bg-gradient: linear-gradient(180deg,#0a150a, #0f1a0f 20%, #0f1a0f),
+                     radial-gradient(circle at 30% 70%, rgba(120,240,181,.1) 0%, transparent 50%),
+                     radial-gradient(circle at 70% 30%, rgba(168,248,213,.05) 0%, transparent 50%);
+    }
+    
+    [data-theme="summer"] {
+      --bg: #1a150a;
+      --card: #2e2a1a;
+      --muted: #d8c8a8;
+      --text: #fff8e8;
+      --accent: #ffb86c;
+      --accent-rgb: 255, 184, 108;
+      --accent-2: #ffd4a3;
+      --ring: #6a4a2a;
+      --shadow: 0 10px 30px rgba(0,0,0,.3), 0 0 20px rgba(255,184,108,.1);
+      --header-bg: rgba(26,21,10,.8);
+      --header-border: #2e2a1a;
+      --nav-bg: #1a150a;
+      --nav-border: #6a4a2a;
+      --nav-hover: #2a1a0a;
+      --nav-active: #1a150a;
+      --table-header: #1a150a;
+      --table-border: #2a1a0a;
+      --table-hover: #1a150a;
+      --btn-gradient: linear-gradient(135deg,#ffb86c,#ffd4a3);
+      --bg-gradient: linear-gradient(180deg,#150a05, #1a150a 20%, #1a150a),
+                     radial-gradient(circle at 40% 60%, rgba(255,184,108,.1) 0%, transparent 50%),
+                     radial-gradient(circle at 60% 40%, rgba(255,212,163,.05) 0%, transparent 50%);
+    }
+    
+    [data-theme="autumn"] {
+      --bg: #1a0f0a;
+      --card: #2e1a1a;
+      --muted: #d8a8a8;
+      --text: #ffe8e8;
+      --accent: #ff8c42;
+      --accent-rgb: 255, 140, 66;
+      --accent-2: #ffb366;
+      --ring: #6a2a2a;
+      --shadow: 0 10px 30px rgba(0,0,0,.3), 0 0 20px rgba(255,140,66,.1);
+      --header-bg: rgba(26,15,10,.8);
+      --header-border: #2e1a1a;
+      --nav-bg: #1a0f0a;
+      --nav-border: #6a2a2a;
+      --nav-hover: #2a0f0a;
+      --nav-active: #1a0f0a;
+      --table-header: #1a0f0a;
+      --table-border: #2a0f0a;
+      --table-hover: #1a0f0a;
+      --btn-gradient: linear-gradient(135deg,#ff8c42,#ffb366);
+      --bg-gradient: linear-gradient(180deg,#150a05, #1a0f0a 20%, #1a0f0a),
+                     radial-gradient(circle at 50% 50%, rgba(255,140,66,.1) 0%, transparent 50%),
+                     radial-gradient(circle at 80% 20%, rgba(255,179,102,.05) 0%, transparent 50%);
+    }
+    
+    [data-theme="holiday"] {
+      --bg: #1a0a1a;
+      --card: #2e1a2a;
+      --muted: #d8a8d8;
+      --text: #ffe8ff;
+      --accent: #ff6b6b;
+      --accent-rgb: 255, 107, 107;
+      --accent-2: #ffa8a8;
+      --ring: #6a2a6a;
+      --shadow: 0 10px 30px rgba(0,0,0,.3), 0 0 20px rgba(255,107,107,.1);
+      --header-bg: rgba(26,10,26,.8);
+      --header-border: #2e1a2a;
+      --nav-bg: #1a0a1a;
+      --nav-border: #6a2a6a;
+      --nav-hover: #2a0a2a;
+      --nav-active: #1a0a1a;
+      --table-header: #1a0a1a;
+      --table-border: #2a0a2a;
+      --table-hover: #1a0a1a;
+      --btn-gradient: linear-gradient(135deg,#ff6b6b,#ffa8a8);
+      --bg-gradient: linear-gradient(180deg,#150a15, #1a0a1a 20%, #1a0a1a),
+                     radial-gradient(circle at 25% 75%, rgba(255,107,107,.1) 0%, transparent 50%),
+                     radial-gradient(circle at 75% 25%, rgba(255,168,168,.05) 0%, transparent 50%);
+    }
+    
     *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#0b0e1a, #0f1220 20%, #0f1220);color:var(--text);font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial}
+    body{margin:0;background:var(--bg-gradient);color:var(--text);font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;min-height:100vh}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
-    header{position:sticky;top:0;z-index:10;background:rgba(15,18,32,.7);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid #1e2440}
+    header{position:sticky;top:0;z-index:10;background:var(--header-bg);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--header-border)}
     .max{max-width:1100px;margin:0 auto;padding:16px}
     .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:var(--shadow)}
+    .logo{width:36px;height:36px;border-radius:9px;background:var(--btn-gradient);box-shadow:var(--shadow)}
     nav{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px}
-    nav a{padding:8px 12px;border:1px solid #21305a;border-radius:999px;color:#cfe0ff}
-    nav a:hover{border-color:#3350a8}
+    nav a{padding:8px 12px;border:1px solid var(--nav-border);border-radius:999px;color:var(--text);background:var(--nav-bg);transition:all 0.3s ease}
+    nav a:hover{border-color:var(--accent);background:var(--nav-hover);transform:translateY(-1px)}
     .hero{padding:34px 0 8px}
-    h1{font-size:28px;margin:0}
+    h1{font-size:28px;margin:0;position:relative}
+    h1 .text-gradient{background:var(--btn-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    h1 .emoji{color:var(--accent);text-shadow:0 0 10px rgba(var(--accent-rgb, 106, 166, 255),.5)}
     .sub{color:var(--muted);margin-top:6px}
 
     section{padding:22px 0}
-    .card{background:var(--card);border:1px solid #1e2440;border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-    h2{margin:0 0 12px 0;font-size:22px}
+    .card{background:var(--card);border:1px solid var(--header-border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;transition:all 0.3s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,0,0,.4), 0 0 30px rgba(var(--accent-rgb, 106, 166, 255),.1)}
+    h2{margin:0 0 12px 0;font-size:22px;color:var(--accent)}
     .grid{display:grid;gap:16px}
     @media(min-width:900px){ .grid-2{grid-template-columns:1fr 1fr} }
 
     .toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-    .tab, .chip{border:1px solid #22305f;background:#111730;color:#cfe0ff;border-radius:999px;padding:6px 10px;cursor:pointer}
-    .tab.active, .chip.active{background:#162046;border-color:#3959be}
+    .tab, .chip{border:1px solid var(--nav-border);background:var(--nav-bg);color:var(--text);border-radius:999px;padding:6px 10px;cursor:pointer;transition:all 0.3s ease}
+    .tab.active, .chip.active{background:var(--nav-active);border-color:var(--accent);transform:scale(1.05);box-shadow:0 0 15px rgba(var(--accent-rgb, 106, 166, 255),.3)}
+    .tab:hover, .chip:hover{background:var(--nav-hover);border-color:var(--accent);transform:translateY(-1px)}
     .actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}
-    thead th{position:sticky;top:0;background:#121832;border-bottom:1px solid #253064;padding:10px 8px;text-align:left;font-weight:600;color:#d7e5ff}
-    tbody td{border-bottom:1px solid #1f274b;padding:10px 8px;color:#e8eeff}
-    tbody tr:hover{background:#121832}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px;transition:all 0.3s ease;background:var(--card)}
+    thead th{position:sticky;top:0;background:var(--table-header);border-bottom:1px solid var(--table-border);padding:10px 8px;text-align:left;font-weight:600;color:var(--accent)}
+    tbody td{border-bottom:1px solid var(--table-border);padding:10px 8px;color:var(--text);transition:background 0.2s ease}
+    tbody tr:hover{background:var(--table-hover);transform:translateX(2px)}
     .num{text-align:right}
-    .pos{width:2.5ch;text-align:center;color:#a9c0ff}
+    .pos{width:2.5ch;text-align:center;color:var(--accent-2)}
     .muted{color:var(--muted)}
-    .btn{display:inline-block;background:linear-gradient(135deg,#578bff,#78f0b5);color:#0b0e1a;font-weight:700;padding:10px 14px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer}
+    .btn{display:inline-block;background:var(--btn-gradient);color:#0b0e1a;font-weight:700;padding:10px 14px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer;transition:all 0.3s ease}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 15px 40px rgba(0,0,0,.4), 0 0 30px rgba(var(--accent-rgb, 106, 166, 255),.2)}
     .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
-    footer{padding:24px 0;color:#9fb0df}
-    .small{font-size:13px;color:#9fb0df}
-    .pill{padding:4px 8px;border-radius:999px;background:#1a2244;border:1px solid #2a3a75;color:#c9d8ff;font-size:12px}
+    footer{padding:24px 0;color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+    .pill{padding:4px 8px;border-radius:999px;background:var(--nav-bg);border:1px solid var(--nav-border);color:var(--text);font-size:12px}
     .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+    /* Enhanced theme-specific effects */
+    [data-theme="winter"] .card {
+      position: relative;
+      background: linear-gradient(135deg, var(--card), rgba(120,216,255,.05));
+      border: 1px solid rgba(120,216,255,.2);
+    }
+
+    [data-theme="winter"] .card::before {
+      content: '❄️';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      opacity: 0.3;
+      animation: sparkle 3s ease-in-out infinite;
+    }
+
+    [data-theme="spring"] .card {
+      position: relative;
+      background: linear-gradient(135deg, var(--card), rgba(120,240,181,.05));
+      border: 1px solid rgba(120,240,181,.2);
+    }
+
+    [data-theme="spring"] .card::before {
+      content: '🌸';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      opacity: 0.3;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    [data-theme="summer"] .card {
+      position: relative;
+      background: linear-gradient(135deg, var(--card), rgba(255,184,108,.05));
+      border: 1px solid rgba(255,184,108,.2);
+    }
+
+    [data-theme="summer"] .card::before {
+      content: '☀️';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      opacity: 0.3;
+      animation: rotate 6s linear infinite;
+    }
+
+    [data-theme="autumn"] .card {
+      position: relative;
+      background: linear-gradient(135deg, var(--card), rgba(255,140,66,.05));
+      border: 1px solid rgba(255,140,66,.2);
+    }
+
+    [data-theme="autumn"] .card::before {
+      content: '🍂';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      opacity: 0.3;
+      animation: fall 5s ease-in-out infinite;
+    }
+
+    [data-theme="holiday"] .card {
+      position: relative;
+      background: linear-gradient(135deg, var(--card), rgba(255,107,107,.05));
+      border: 1px solid rgba(255,107,107,.2);
+    }
+
+    [data-theme="holiday"] .card::before {
+      content: '🎄';
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-size: 12px;
+      opacity: 0.3;
+      animation: twinkle 2s ease-in-out infinite;
+    }
+
+    /* Theme animations */
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-3px); }
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fall {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(2px) rotate(180deg); }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Theme selector styling */
+    #themeSelector {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--ring);
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #themeSelector:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 0 15px rgba(var(--accent-rgb, 106, 166, 255),.2);
+    }
+
+    #themeSelector option {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    /* Enhanced seasonal effects */
+    [data-theme="winter"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(120,216,255,.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(184,230,255,.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="spring"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 30% 30%, rgba(120,240,181,.03) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(168,248,213,.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="summer"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 40% 40%, rgba(255,184,108,.03) 0%, transparent 50%),
+        radial-gradient(circle at 60% 60%, rgba(255,212,163,.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="autumn"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 50% 50%, rgba(255,140,66,.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,179,102,.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    [data-theme="holiday"] body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 25% 25%, rgba(255,107,107,.03) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,168,168,.02) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Enhanced table styling for themes */
+    [data-theme="winter"] thead th {
+      background: linear-gradient(135deg, var(--table-header), rgba(120,216,255,.1));
+    }
+
+    [data-theme="spring"] thead th {
+      background: linear-gradient(135deg, var(--table-header), rgba(120,240,181,.1));
+    }
+
+    [data-theme="summer"] thead th {
+      background: linear-gradient(135deg, var(--table-header), rgba(255,184,108,.1));
+    }
+
+    [data-theme="autumn"] thead th {
+      background: linear-gradient(135deg, var(--table-header), rgba(255,140,66,.1));
+    }
+
+    [data-theme="holiday"] thead th {
+      background: linear-gradient(135deg, var(--table-header), rgba(255,107,107,.1));
+    }
   </style>
 </head>
 <body>
@@ -71,16 +437,41 @@
       <nav aria-label="Primary">
         <a href="#schedule">Schedule</a>
         <a href="#standings">Standings</a>
-        <a href="#report">Report Match</a>
+        <a href="#stats">Statistics</a>
+        <select id="themeSelector">
+          <option value="default">🎯 Default</option>
+          <option value="winter">❄️ Winter</option>
+          <option value="spring">🌸 Spring</option>
+          <option value="summer">☀️ Summer</option>
+          <option value="autumn">🍂 Autumn</option>
+          <option value="holiday">🎄 Holiday</option>
+        </select>
       </nav>
     </div>
   </header>
 
   <main class="max">
+    <!-- LAST WEEK'S RESULTS -->
+    <section id="lastWeekResults" style="display: none;">
+      <div class="card">
+        <h2>🎯 Last Week's Results</h2>
+        <div style="margin-bottom: 16px;">
+          <input type="file" id="resultsFile" accept=".csv,.xlsx,.xls" style="display: none;">
+          <button class="btn" onclick="document.getElementById('resultsFile').click()">📊 Import Results</button>
+          <span style="margin-left: 8px; font-size: 14px; color: var(--muted);">Upload CSV or Excel file</span>
+        </div>
+        <div id="lastWeekTable"></div>
+      </div>
+    </section>
+
     <!-- SCHEDULE -->
     <section id="schedule">
       <div class="card">
         <h2>Schedule</h2>
+        <div class="toolbar" role="tablist" aria-label="Schedule view">
+          <button class="tab active" role="tab" aria-selected="true" id="schedule-tab-upcoming">Upcoming</button>
+          <button class="tab" role="tab" aria-selected="false" id="schedule-tab-all">All</button>
+        </div>
         <div id="scheduleTable"></div>
       </div>
     </section>
@@ -104,13 +495,40 @@
       </div>
     </section>
 
-    <!-- REPORT -->
-    <section id="report">
+    <!-- STATS -->
+    <section id="stats">
       <div class="card">
-        <h2>Report Match</h2>
-        <div class="actions">
-          <a id="reportBtn" class="btn" target="_blank" rel="noopener noreferrer">Open Match Report Form</a>
+        <h2>League Statistics</h2>
+        <div class="toolbar" role="tablist" aria-label="Division" id="stats-division-tabs">
+          <button class="tab active" role="tab" aria-selected="true" id="stats-tab-men">Men</button>
+          <button class="tab" role="tab" aria-selected="false" id="stats-tab-women">Women</button>
         </div>
+                 <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+           <div>
+             <h3 class="muted">🏆 High Scores 🏆</h3>
+             <div id="statsHighScores"></div>
+           </div>
+           <div>
+             <h3 class="muted">👑 Highest Score 👑</h3>
+             <div id="statsHighestScore"></div>
+           </div>
+           <div>
+             <h3 class="muted">💥 Double In 💥</h3>
+             <div id="statsDoubleIn"></div>
+           </div>
+           <div>
+             <h3 class="muted">🪡 Double Out 🪡</h3>
+             <div id="statsDoubleOut"></div>
+           </div>
+           <div>
+             <h3 class="muted">⚾ Highest Baseball Score ⚾</h3>
+             <div id="statsHighestBaseballScore"></div>
+           </div>
+           <div>
+             <h3 class="muted">🌸 Flowers 🌸</h3>
+             <div id="statsFlowers"></div>
+           </div>
+         </div>
       </div>
     </section>
   </main>
@@ -159,13 +577,153 @@
       formUrl: "https://docs.google.com/forms/d/e/1FAIpQLSeDM6h3XBQ-DcwXTZ3vOPA8wvVvvdRG4rrpqJH_kt1MTEulTw/viewform?usp=header"
     };
 
-    const SETTINGS = { venue: "Village Green Community Centre", time: "19:00" };
+             // Manual stats data - update these with real numbers each week
+     const STATS_DATA = {
+       highScores: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", score: 15 },
+           { player: "Phil", team: "Jorkers", score: 12 },
+           { player: "Sev", team: "Tech Wizards", score: 18 }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", score: 14 },
+           { player: "Bailey", team: "Jorkers", score: 13 },
+           { player: "Val", team: "Tech Wizards", score: 16 }
+         ]
+       },
+       highestScore: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", score: 180 },
+           { player: "Phil", team: "Jorkers", score: 174 },
+           { player: "Sev", team: "Tech Wizards", score: 171 }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", score: 140 },
+           { player: "Bailey", team: "Jorkers", score: 135 },
+           { player: "Val", team: "Tech Wizards", score: 130 }
+         ]
+       },
+       doubleIn: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", double: "D20" },
+           { player: "Phil", team: "Jorkers", double: "D16" },
+           { player: "Sev", team: "Tech Wizards", double: "D18" }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", double: "D10" },
+           { player: "Bailey", team: "Jorkers", double: "D12" },
+           { player: "Val", team: "Tech Wizards", double: "D8" }
+         ]
+       },
+       doubleOut: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", double: "D16" },
+           { player: "Phil", team: "Jorkers", double: "D20" },
+           { player: "Sev", team: "Tech Wizards", double: "D18" }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", double: "D10" },
+           { player: "Bailey", team: "Jorkers", double: "D12" },
+           { player: "Val", team: "Tech Wizards", double: "D8" }
+         ]
+       },
+       highestBaseballScore: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", score: 15 },
+           { player: "Phil", team: "Jorkers", score: 20 },
+           { player: "Sev", team: "Tech Wizards", score: 10 }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", score: 14 },
+           { player: "Bailey", team: "Jorkers", score: 13 },
+           { player: "Val", team: "Tech Wizards", score: 12 }
+         ]
+       },
+       flowers: {
+         men: [
+           { player: "Drew", team: "Tall Boyz", lowestScore: 3, flowerCount: 5 },
+           { player: "Phil", team: "Jorkers", lowestScore: 7, flowerCount: 3 },
+           { player: "Sev", team: "Tech Wizards", lowestScore: 5, flowerCount: 4 }
+         ],
+         women: [
+           { player: "Lee", team: "The Sleepy Queens", lowestScore: 4, flowerCount: 6 },
+           { player: "Bailey", team: "Jorkers", lowestScore: 6, flowerCount: 2 },
+           { player: "Val", team: "Tech Wizards", lowestScore: 8, flowerCount: 3 }
+         ]
+       }
+     };
+
+    const SETTINGS = { venue: "Village Green Community Centre", time: "7:00 PM" };
+
+    // Match results data structure
+    const MATCH_RESULTS = [
+      // Example format: { date: "2025-01-10", results: [{ team1: "Tall Boyz", team2: "Jorkers", score1: 15, score2: 12 }] }
+    ];
+
+    // Function to parse Excel-like CSV data
+    function parseMatchResults(csvData) {
+      const lines = csvData.split('\n');
+      const results = [];
+      
+      for (let i = 1; i < lines.length; i++) { // Skip header
+        const line = lines[i].trim();
+        if (!line) continue;
+        
+        const [date, team1, team2, score1, score2] = line.split(',').map(s => s.trim());
+        if (date && team1 && team2 && score1 && score2) {
+          results.push({
+            date: date,
+            team1: team1,
+            team2: team2,
+            score1: parseInt(score1),
+            score2: parseInt(score2)
+          });
+        }
+      }
+      
+      return results;
+    }
 
     // 1) Define nights with pairings
     const NIGHTS = [
       { date: "2025-09-05", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
       { date: "2025-09-12", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
       { date: "2025-09-19", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+      { date: "2025-09-26", matches: [ [TEAMS.t1,TEAMS.t5], [TEAMS.t2,TEAMS.t6] ] },
+      { date: "2025-10-07", matches: [ [TEAMS.t3,TEAMS.t5], [TEAMS.t4,TEAMS.t6] ] },
+      { date: "2025-10-14", matches: [ [TEAMS.t1,TEAMS.t6], [TEAMS.t2,TEAMS.t5] ] },
+      { date: "2025-10-21", matches: [ [TEAMS.t3,TEAMS.t6], [TEAMS.t4,TEAMS.t5] ] },
+      { date: "2025-10-28", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+      { date: "2025-11-04", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+      { date: "2025-11-11", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+      { date: "2025-11-18", matches: [ [TEAMS.t1,TEAMS.t5], [TEAMS.t2,TEAMS.t6] ] },
+      { date: "2025-11-25", matches: [ [TEAMS.t3,TEAMS.t5], [TEAMS.t4,TEAMS.t6] ] },
+      { date: "2025-12-02", matches: [ [TEAMS.t1,TEAMS.t6], [TEAMS.t2,TEAMS.t5] ] },
+      { date: "2025-12-09", matches: [ [TEAMS.t3,TEAMS.t6], [TEAMS.t4,TEAMS.t5] ] },
+      { date: "2025-12-16", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+      { date: "2025-12-23", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+      { date: "2025-12-30", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+      { date: "2026-01-06", matches: [ [TEAMS.t1,TEAMS.t5], [TEAMS.t2,TEAMS.t6] ] },
+      { date: "2026-01-13", matches: [ [TEAMS.t3,TEAMS.t5], [TEAMS.t4,TEAMS.t6] ] },
+      { date: "2026-01-20", matches: [ [TEAMS.t1,TEAMS.t6], [TEAMS.t2,TEAMS.t5] ] },
+      { date: "2026-01-27", matches: [ [TEAMS.t3,TEAMS.t6], [TEAMS.t4,TEAMS.t5] ] },
+      { date: "2026-02-03", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+      { date: "2026-02-10", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+      { date: "2026-02-17", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+      { date: "2026-02-24", matches: [ [TEAMS.t1,TEAMS.t5], [TEAMS.t2,TEAMS.t6] ] },
+      { date: "2026-03-03", matches: [ [TEAMS.t3,TEAMS.t5], [TEAMS.t4,TEAMS.t6] ] },
+      { date: "2026-03-10", matches: [ [TEAMS.t1,TEAMS.t6], [TEAMS.t2,TEAMS.t5] ] },
+      { date: "2026-03-17", matches: [ [TEAMS.t3,TEAMS.t6], [TEAMS.t4,TEAMS.t5] ] },
+      { date: "2026-03-24", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+      { date: "2026-03-31", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+      { date: "2026-04-07", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+      { date: "2026-04-14", matches: [ [TEAMS.t1,TEAMS.t5], [TEAMS.t2,TEAMS.t6] ] },
+      { date: "2026-04-21", matches: [ [TEAMS.t3,TEAMS.t5], [TEAMS.t4,TEAMS.t6] ] },
+      { date: "2026-04-28", matches: [ [TEAMS.t1,TEAMS.t6], [TEAMS.t2,TEAMS.t5] ] },
+      { date: "2026-05-05", matches: [ [TEAMS.t3,TEAMS.t6], [TEAMS.t4,TEAMS.t5] ] },
+      { date: "2026-05-12", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+      { date: "2026-05-19", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+      { date: "2026-05-26", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
     ];
 
     /* ====== RENDERING LOGIC (no need to edit) ====== */
@@ -236,28 +794,39 @@
       return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
     }
 
-         function scheduleTable(nights){
+         function scheduleTable(nights, showAll = false){
        const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date));
-       let html = `<table aria-label="Schedule"><thead><tr>
-         <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
-       for (const n of sorted){
-         const time  = n.time  || SETTINGS.time;
-         const venue = n.venue || SETTINGS.venue || "";
-         const matchups = n.matches
-           .map(([a,b]) => {
-             // Split team names by hyphen and take the part after it
-             const teamA = a.split(' - ')[1] || a;
-             const teamB = b.split(' - ')[1] || b;
-             return `${teamA} <span class="muted">vs</span> ${teamB}`;
-           })
-           .join(` <span class="muted">||</span> `);
-         html += `<tr>
-           <td>${fmtDate(n.date)}</td>
-           <td>${time}</td>
-           <td>${matchups}</td>
-           <td>${venue}</td>
-         </tr>`;
+       
+       // Filter for upcoming dates only if not showing all
+       let filteredNights = sorted;
+       if (!showAll) {
+         const today = new Date();
+         today.setHours(0, 0, 0, 0); // Reset time to start of day
+         
+         filteredNights = sorted.filter(night => {
+           const nightDate = new Date(night.date + "T00:00:00");
+           return nightDate >= today;
+         }).slice(0, 3); // Show only next 3 upcoming dates
        }
+       
+               let html = `<table aria-label="Schedule"><thead><tr>
+          <th>Date</th><th>Time</th><th>Matchups</th></tr></thead><tbody>`;
+        for (const n of filteredNights){
+          const time  = n.time  || SETTINGS.time;
+          const matchups = n.matches
+            .map(([a,b]) => {
+              // Split team names by hyphen and take the part after it
+              const teamA = a.split(' - ')[1] || a;
+              const teamB = b.split(' - ')[1] || b;
+              return `${teamA} <span class="muted">vs</span> ${teamB}`;
+            })
+            .join(` <span class="muted">||</span> `);
+          html += `<tr>
+            <td>${fmtDate(n.date)}</td>
+            <td>${time}</td>
+            <td>${matchups}</td>
+          </tr>`;
+        }
        html += `</tbody></table>`;
        return html;
      }
@@ -281,25 +850,83 @@
       let head, rows;
       if(type==="teams"){
         head = `<tr><th>Ranking</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
-        rows = sorted.map((t,i)=>`
+                 rows = sorted.map((t,i)=>`
+           <tr>
+             <td class="pos">${i === 0 ? '👑' : i+1}</td>
+             <td>${t.name}</td>
+             <td class="num">${t.P??0}</td><td class="num">${t.W??0}</td><td class="num">${t.D??0}</td><td class="num">${t.L??0}</td>
+             <td class="num">${t.LF??0}</td><td class="num">${t.LA??0}</td>
+             <td class="num">${computeDiff(t)}</td>
+             <td class="num"><strong>${t.Pts??0}</strong></td>
+           </tr>`).join("");
+       }else{
+         head = `<tr><th>Ranking</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+         rows = sorted.map((p,i)=>`
+           <tr>
+             <td class="pos">${i === 0 ? '👑' : i+1}</td>
+             <td>${p.player}</td><td>${p.team||""}</td>
+             <td class="num">${p.P??0}</td><td class="num">${p.W??0}</td><td class="num">${p.L??0}</td>
+             <td class="num">${p.LF??0}</td><td class="num">${p.LA??0}</td>
+             <td class="num">${computeDiff(p)}</td>
+             <td class="num"><strong>${p.Pts??0}</strong></td>
+           </tr>`).join("");
+      }
+
+      return `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
+    }
+
+    function statsTable(data, category, division) {
+      const items = data[category][division] || [];
+      
+      // Sort items based on category type
+      const sorted = [...items].sort((a, b) => {
+        if (category === "flowers") {
+          // For flowers, sort by lowest score first (worst performance), then by flower count
+          if ((a.lowestScore || 0) !== (b.lowestScore || 0)) {
+            return (a.lowestScore || 0) - (b.lowestScore || 0);
+          }
+          return (b.flowerCount || 0) - (a.flowerCount || 0);
+        } else if (category === "highScores" || category === "highestScore" || category === "highestBaseballScore") {
+          // For score-based stats, higher is better
+          return (b.score || 0) - (a.score || 0);
+        } else {
+          // For double-based stats, sort by double value (D20 > D16 > D12, etc.)
+          const getDoubleValue = (double) => {
+            const match = double.match(/D(\d+)/);
+            return match ? parseInt(match[1]) : 0;
+          };
+          return getDoubleValue(b.double || "D0") - getDoubleValue(a.double || "D0");
+        }
+      });
+      
+      let head, rows;
+      if (category === "flowers") {
+        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">Floweriest Score</th><th class="num">Flower Count</th></tr>`;
+        rows = sorted.map((item, i) => `
           <tr>
             <td class="pos">${i+1}</td>
-            <td>${t.name}</td>
-            <td class="num">${t.P??0}</td><td class="num">${t.W??0}</td><td class="num">${t.D??0}</td><td class="num">${t.L??0}</td>
-            <td class="num">${t.LF??0}</td><td class="num">${t.LA??0}</td>
-            <td class="num">${computeDiff(t)}</td>
-            <td class="num"><strong>${t.Pts??0}</strong></td>
+            <td>${item.player}</td>
+            <td>${item.team}</td>
+            <td class="num"><strong>${item.lowestScore}</strong></td>
+            <td class="num"><strong>${item.flowerCount}</strong></td>
           </tr>`).join("");
-      }else{
-        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
-        rows = sorted.map((p,i)=>`
+      } else if (category === "highScores" || category === "highestScore" || category === "highestBaseballScore") {
+        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">Score</th></tr>`;
+        rows = sorted.map((item, i) => `
           <tr>
             <td class="pos">${i+1}</td>
-            <td>${p.player}</td><td>${p.team||""}</td>
-            <td class="num">${p.P??0}</td><td class="num">${p.W??0}</td><td class="num">${p.L??0}</td>
-            <td class="num">${p.LF??0}</td><td class="num">${p.LA??0}</td>
-            <td class="num">${computeDiff(p)}</td>
-            <td class="num"><strong>${p.Pts??0}</strong></td>
+            <td>${item.player}</td>
+            <td>${item.team}</td>
+            <td class="num"><strong>${item.score}</strong></td>
+          </tr>`).join("");
+      } else {
+        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">Double</th></tr>`;
+        rows = sorted.map((item, i) => `
+          <tr>
+            <td class="pos">${i+1}</td>
+            <td>${item.player}</td>
+            <td>${item.team}</td>
+            <td class="num"><strong>${item.double}</strong></td>
           </tr>`).join("");
       }
 
@@ -310,15 +937,93 @@
       btns.forEach(b=>b.classList.toggle("active", b===active));
     }
 
+    // Theme switching function
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme === 'default' ? '' : theme);
+      localStorage.setItem('dartsTheme', theme);
+    }
+
+    // Function to display last week's results
+    function displayLastWeekResults() {
+      if (MATCH_RESULTS.length === 0) {
+        document.getElementById('lastWeekResults').style.display = 'none';
+        return;
+      }
+
+      const lastWeek = MATCH_RESULTS[MATCH_RESULTS.length - 1];
+      let html = `<table aria-label="Last Week Results"><thead><tr>
+        <th>Match</th><th>Score</th><th>Winner</th></tr></thead><tbody>`;
+      
+      lastWeek.results.forEach(match => {
+        const winner = match.score1 > match.score2 ? match.team1 : match.team2;
+        const scoreDisplay = `${match.team1} ${match.score1} - ${match.score2} ${match.team2}`;
+        html += `<tr>
+          <td>${match.team1} vs ${match.team2}</td>
+          <td>${scoreDisplay}</td>
+          <td><strong>${winner}</strong></td>
+        </tr>`;
+      });
+      
+      html += `</tbody></table>`;
+      document.getElementById('lastWeekTable').innerHTML = html;
+      document.getElementById('lastWeekResults').style.display = 'block';
+    }
+
     function render(){
-      $("#leagueName").textContent = "🎯 " + DATA.leagueName + " 🎯";
+      $("#leagueName").innerHTML = '<span class="emoji">🎯</span> <span class="text-gradient">' + DATA.leagueName + '</span> <span class="emoji">🎯</span>';
       $("#leagueNameFoot").textContent = DATA.leagueName;
       $("#updated").textContent = "Updated " + new Date().toLocaleString();
       $("#year").textContent = new Date().getFullYear();
-      $("#reportBtn").href = DATA.formUrl || "#";
 
-      // Schedule
-      $("#scheduleTable").innerHTML = scheduleTable(NIGHTS);
+      // Theme functionality
+      const themeSelector = $("#themeSelector");
+      const savedTheme = localStorage.getItem('dartsTheme') || 'default';
+      themeSelector.value = savedTheme;
+      setTheme(savedTheme);
+      
+      themeSelector.addEventListener("change", (e) => {
+        setTheme(e.target.value);
+      });
+
+      // File import functionality
+      const resultsFile = $("#resultsFile");
+      resultsFile.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const csvData = e.target.result;
+            const results = parseMatchResults(csvData);
+            if (results.length > 0) {
+              MATCH_RESULTS.push({ date: new Date().toISOString().split('T')[0], results: results });
+              displayLastWeekResults();
+              alert(`Imported ${results.length} match results!`);
+            }
+          };
+          reader.readAsText(file);
+        }
+      });
+
+      // Schedule (tabs)
+      const scheduleTabUpcoming = $("#schedule-tab-upcoming"), scheduleTabAll = $("#schedule-tab-all");
+      let scheduleView = "upcoming";
+
+      function refreshSchedule() {
+        $("#scheduleTable").innerHTML = scheduleTable(NIGHTS, scheduleView === "all");
+      }
+
+      scheduleTabUpcoming.addEventListener("click", () => { 
+        scheduleView = "upcoming"; 
+        setActive([scheduleTabUpcoming, scheduleTabAll], scheduleTabUpcoming); 
+        refreshSchedule(); 
+      });
+      scheduleTabAll.addEventListener("click", () => { 
+        scheduleView = "all"; 
+        setActive([scheduleTabUpcoming, scheduleTabAll], scheduleTabAll); 
+        refreshSchedule(); 
+      });
+
+      refreshSchedule();
 
       // Standings (tabs)
       const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
@@ -357,6 +1062,35 @@
       });
 
       refreshStandings();
+
+      // Stats section
+      const statsTabMen = $("#stats-tab-men"), statsTabWomen = $("#stats-tab-women");
+      let statsDivision = "men";
+
+      function refreshAllStats() {
+        $("#statsHighScores").innerHTML = statsTable(STATS_DATA, "highScores", statsDivision);
+        $("#statsHighestScore").innerHTML = statsTable(STATS_DATA, "highestScore", statsDivision);
+        $("#statsDoubleIn").innerHTML = statsTable(STATS_DATA, "doubleIn", statsDivision);
+        $("#statsDoubleOut").innerHTML = statsTable(STATS_DATA, "doubleOut", statsDivision);
+        $("#statsHighestBaseballScore").innerHTML = statsTable(STATS_DATA, "highestBaseballScore", statsDivision);
+        $("#statsFlowers").innerHTML = statsTable(STATS_DATA, "flowers", statsDivision);
+      }
+
+      statsTabMen.addEventListener("click", () => { 
+        statsDivision = "men"; 
+        setActive([statsTabMen, statsTabWomen], statsTabMen); 
+        refreshAllStats(); 
+      });
+      statsTabWomen.addEventListener("click", () => { 
+        statsDivision = "women"; 
+        setActive([statsTabMen, statsTabWomen], statsTabWomen); 
+        refreshAllStats(); 
+      });
+
+      refreshAllStats();
+      
+      // Display last week's results if available
+      displayLastWeekResults();
     }
 
     render();
