@@ -202,13 +202,13 @@
 
     function scheduleTable(nights){
       const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date));
-      let html = <table aria-label="Schedule"><thead><tr>
-        <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>;
+      let html = `<table aria-label="Schedule"><thead><tr>
+        <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
       for (const n of sorted){
         const time  = n.time  || SETTINGS.time;
         const venue = n.venue || SETTINGS.venue || "";
         const matchups = n.matches
-          .map(([a,b]) => ${a} <span class="muted">vs</span> ${b})
+          .map(([a,b]) => `${a} <span class="muted">vs</span> ${b}`)
           .join( <span class="muted">||</span> );
         html += <tr>
           <td>${fmtDate(n.date)}</td>
@@ -217,7 +217,7 @@
           <td>${venue}</td>
         </tr>;
       }
-      html += </tbody></table>;
+      html += `</tbody></table>`;
       return html;
     }
 
