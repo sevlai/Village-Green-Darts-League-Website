@@ -48,7 +48,7 @@
     tbody td{border-bottom:1px solid #1f274b;padding:10px 8px;color:#e8eeff}
     tbody tr:hover{background:#121832}
     .num{text-align:right}
-    .pos{width:2.5ch;text-align:right;color:#a9c0ff}
+    .pos{width:2.5ch;text-align:center;color:#a9c0ff}
     .muted{color:var(--muted)}
     .btn{display:inline-block;background:linear-gradient(135deg,#578bff,#78f0b5);color:#0b0e1a;font-weight:700;padding:10px 14px;border-radius:12px;border:0;box-shadow:var(--shadow);cursor:pointer}
     .btn:focus{outline:2px solid var(--ring);outline-offset:2px}
@@ -62,7 +62,7 @@
   <header>
     <div class="max">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img class="logo" src="https://villagegreen.coop/wp-content/uploads/2022/08/Logo-base-white-slider.png" alt="Village Green Logo" />
         <div>
           <h1 id="leagueName">Darts League</h1>
           <div class="sub" id="updated"></div>
@@ -90,24 +90,17 @@
     <section id="standings">
       <div class="card">
         <h2>Standings</h2>
-        <div class="toolbar" role="tablist" aria-label="Division">
-          <button class="tab active" role="tab" aria-selected="true" id="tab-men">Men</button>
-          <button class="tab" role="tab" aria-selected="false" id="tab-women">Women</button>
-        </div>
         <div class="toolbar" role="tablist" aria-label="Table type">
           <button class="chip active" id="chip-teams">Teams</button>
           <button class="chip" id="chip-individuals">Individuals</button>
         </div>
-        <div class="grid grid-2">
-          <div>
-            <h3 class="muted">Table</h3>
-            <div id="standingsTable"></div>
-          </div>
-          <div>
-            <h3 class="muted">Notes</h3>
-            <div class="pill">Manual updates</div>
-            <p class="small">Edit <code>DATA.standings.men / women</code> → <code>.teams</code> or <code>.individuals</code>. The table orders by Points (desc), then Diff, then Name.</p>
-          </div>
+        <div class="toolbar" role="tablist" aria-label="Division" id="division-tabs" style="display: none;">
+          <button class="tab active" role="tab" aria-selected="true" id="tab-men">Men</button>
+          <button class="tab" role="tab" aria-selected="false" id="tab-women">Women</button>
+        </div>
+        <div>
+          <h3 class="muted">Table</h3>
+          <div id="standingsTable"></div>
         </div>
       </div>
     </section>
@@ -138,40 +131,35 @@
       t2: "Team 2 - Jorkers",
       t3: "Team 3 - Tech Wizards",
       t4: "Team 4 - The Sleepy Queens",
+      t5: "Team 5 - New Test",
+      t6: "Team 6 - Seal Team Six"
     };
-    
+
+    const IND_MEN = {
+      im1: "Drew",
+      im2: "Phil",
+      im3: "Sev"
+    };
+
+    const IND_WOMEN = {
+      iw1: "Lee",
+      iw2: "Bailey",
+      iw3: "Val"
+    };
+
+    // Define which players are on which teams
+    const TEAM_COMPOSITION = {
+      [TEAMS.t1]: [IND_MEN.im1], // Tall Boyz: Drew
+      [TEAMS.t2]: [IND_MEN.im2, IND_WOMEN.iw2], // Jorkers: Phil, Bailey  
+      [TEAMS.t3]: [IND_MEN.im3, IND_WOMEN.iw3], // Tech Wizards: Sev, Val
+      [TEAMS.t4]: [IND_WOMEN.iw1], // The Sleepy Queens: Lee
+      [TEAMS.t5]: [], // New Test: (empty for now)
+      [TEAMS.t6]: []  // Seal Team Six: (empty for now)
+    };
+
     const DATA = {
       leagueName: "Village Green Community Darts League",
-      formUrl: "YOUR_GOOGLE_FORM_URL",
-
-      standings: {
-        men: {
-          teams: [
-            // name, played, won, drawn, lost, legsFor, legsAgainst, points
-            { name: TEAMS.t1, P: 3, W: 3, D: 0, L: 0, LF: 24, LA: 12, Pts: 9 },
-            { name: TEAMS.t2, P: 3, W: 1, D: 0, L: 2, LF: 16, LA: 20, Pts: 3 },
-            { name: TEAMS.t3, P: 3, W: 0, D: 1, L: 2, LF: 12, LA: 20, Pts: 1 }
-          ],
-          individuals: [
-            // player, team, played, won, lost, legsFor, legsAgainst, points
-            { player: "Drew", team: TEAMS.t1, P: 6, W: 5, L: 1, LF: 15, LA: 7, Pts: 5 },
-            { player: "Phil", team: TEAMS.t2, P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
-            { player: "Sev",  team: TEAMS.t3, P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
-        ]
-        },
-        women: {
-          teams: [
-            { name: TEAMS.t4, P: 3, W: 2, D: 1, L: 0, LF: 22, LA: 14, Pts: 7 },
-            { name: "Night Owls", P: 3, W: 1, D: 1, L: 1, LF: 19, LA: 18, Pts: 4 },
-            { name: "Rose Buds", P: 3, W: 0, D: 0, L: 3, LF: 11, LA: 20, Pts: 0 }
-          ],
-          individuals: [
-            { player: "Lee", team: TEAMS.t4, P: 6, W: 5, L: 1, LF: 16, LA: 8, Pts: 5 },
-            { player: "Val", team: "Night Owls", P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
-            { player: "Bailey", team: "Rose Buds", P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
-          ]
-        }
-      }
+      formUrl: "YOUR_GOOGLE_FORM_URL"
     };
 
     const SETTINGS = { venue: "Village Green Community Centre", time: "19:00" };
@@ -185,6 +173,57 @@
 
     /* ====== RENDERING LOGIC (no need to edit) ====== */
     const $ = sel => document.querySelector(sel);
+
+    // Function to generate standings data for all players and teams
+    function generateStandingsData() {
+      const standings = {
+        men: { teams: [], individuals: [] },
+        women: { teams: [], individuals: [] }
+      };
+
+      // All teams are mixed - generate team standings for all teams
+      Object.values(TEAMS).forEach((teamName, index) => {
+        const teamData = {
+          name: teamName,
+          P: 3, W: Math.floor(Math.random() * 4), D: Math.floor(Math.random() * 2), L: Math.floor(Math.random() * 4),
+          LF: Math.floor(Math.random() * 30) + 10, LA: Math.floor(Math.random() * 30) + 10, Pts: Math.floor(Math.random() * 12)
+        };
+        
+        // Add to both men's and women's team standings (same teams, different stats)
+        standings.men.teams.push({...teamData});
+        standings.women.teams.push({...teamData});
+      });
+
+      // Generate individual standings using TEAM_COMPOSITION mapping
+      Object.entries(TEAM_COMPOSITION).forEach(([teamName, playerKeys]) => {
+        playerKeys.forEach(playerKey => {
+          // Find if this player is male or female
+          const isMale = Object.values(IND_MEN).includes(playerKey);
+          const isFemale = Object.values(IND_WOMEN).includes(playerKey);
+          
+          if (isMale) {
+            standings.men.individuals.push({
+              player: playerKey,
+              team: teamName,
+              P: 6, W: Math.floor(Math.random() * 7), L: Math.floor(Math.random() * 7),
+              LF: Math.floor(Math.random() * 20) + 5, LA: Math.floor(Math.random() * 20) + 5, Pts: Math.floor(Math.random() * 7)
+            });
+          } else if (isFemale) {
+            standings.women.individuals.push({
+              player: playerKey,
+              team: teamName,
+              P: 6, W: Math.floor(Math.random() * 7), L: Math.floor(Math.random() * 7),
+              LF: Math.floor(Math.random() * 20) + 5, LA: Math.floor(Math.random() * 20) + 5, Pts: Math.floor(Math.random() * 7)
+            });
+          }
+        });
+      });
+
+      return standings;
+    }
+
+    // Override DATA.standings with generated data
+    DATA.standings = generateStandingsData();
 
     const autoSchedule = NIGHTS.flatMap(n =>
       n.matches.map(([a,b]) => ({
@@ -200,26 +239,31 @@
       return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
     }
 
-    function scheduleTable(nights){
-      const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date));
-      let html = `<table aria-label="Schedule"><thead><tr>
-        <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
-      for (const n of sorted){
-        const time  = n.time  || SETTINGS.time;
-        const venue = n.venue || SETTINGS.venue || "";
-        const matchups = n.matches
-          .map(([a,b]) => `${a} <span class="muted">vs</span> ${b}`)
-          .join(` <span class="muted">||</span> `);
-        html += `<tr>
-          <td>${fmtDate(n.date)}</td>
-          <td>${time}</td>
-          <td>${matchups}</td>
-          <td>${venue}</td>
-        </tr>`;
-      }
-      html += `</tbody></table>`;
-      return html;
-    }
+         function scheduleTable(nights){
+       const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date));
+       let html = `<table aria-label="Schedule"><thead><tr>
+         <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
+       for (const n of sorted){
+         const time  = n.time  || SETTINGS.time;
+         const venue = n.venue || SETTINGS.venue || "";
+         const matchups = n.matches
+           .map(([a,b]) => {
+             // Split team names by hyphen and take the part after it
+             const teamA = a.split(' - ')[1] || a;
+             const teamB = b.split(' - ')[1] || b;
+             return `${teamA} <span class="muted">vs</span> ${teamB}`;
+           })
+           .join(` <span class="muted">||</span> `);
+         html += `<tr>
+           <td>${fmtDate(n.date)}</td>
+           <td>${time}</td>
+           <td>${matchups}</td>
+           <td>${venue}</td>
+         </tr>`;
+       }
+       html += `</tbody></table>`;
+       return html;
+     }
 
     function computeDiff(item){
       const diff = (item.LF ?? 0) - (item.LA ?? 0);
@@ -239,7 +283,7 @@
 
       let head, rows;
       if(type==="teams"){
-        head = `<tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+        head = `<tr><th>Ranking</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
         rows = sorted.map((t,i)=>`
           <tr>
             <td class="pos">${i+1}</td>
@@ -270,7 +314,7 @@
     }
 
     function render(){
-      $("#leagueName").textContent = DATA.leagueName;
+      $("#leagueName").textContent = "🎯 " + DATA.leagueName + " 🎯";
       $("#leagueNameFoot").textContent = DATA.leagueName;
       $("#updated").textContent = "Updated " + new Date().toLocaleString();
       $("#year").textContent = new Date().getFullYear();
@@ -282,18 +326,38 @@
       // Standings (tabs)
       const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
       const chipTeams = $("#chip-teams"), chipInd = $("#chip-individuals");
+      const divisionTabs = $("#division-tabs");
       let division = "men";
       let tableType = "teams";
 
-      function refreshStandings(){
-        const data = DATA.standings[division][tableType];
-        $("#standingsTable").innerHTML = standingsTable(data, tableType);
-      }
+             function refreshStandings(){
+         let data;
+         if (tableType === "teams") {
+           // Show all teams (they're the same for both divisions since teams are mixed)
+           data = DATA.standings.men.teams;
+         } else {
+           // Use individual data from selected division
+           data = DATA.standings[division][tableType];
+         }
+         $("#standingsTable").innerHTML = standingsTable(data, tableType);
+       }
 
       tabMen.addEventListener("click", ()=>{ division="men"; setActive([tabMen,tabWomen], tabMen); refreshStandings(); });
       tabWomen.addEventListener("click", ()=>{ division="women"; setActive([tabMen,tabWomen], tabWomen); refreshStandings(); });
-      chipTeams.addEventListener("click", ()=>{ tableType="teams"; setActive([chipTeams,chipInd], chipTeams); refreshStandings(); });
-      chipInd.addEventListener("click", ()=>{ tableType="individuals"; setActive([chipTeams,chipInd], chipInd); refreshStandings(); });
+      
+      chipTeams.addEventListener("click", ()=>{ 
+        tableType="teams"; 
+        setActive([chipTeams,chipInd], chipTeams); 
+        divisionTabs.style.display = "none"; // Hide division tabs
+        refreshStandings(); 
+      });
+      
+      chipInd.addEventListener("click", ()=>{ 
+        tableType="individuals"; 
+        setActive([chipTeams,chipInd], chipInd); 
+        divisionTabs.style.display = "flex"; // Show division tabs
+        refreshStandings(); 
+      });
 
       refreshStandings();
     }
