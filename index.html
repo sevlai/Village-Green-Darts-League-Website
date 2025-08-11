@@ -134,171 +134,109 @@
        EDIT THIS DATA ONLY
        ============================ */
     const TEAMS = {
-      t1: "Team 1 - Tall Boyz",
-      t2: "Team 2 - Jorkers",
-      t3: "Team 3 - Tech Wizards",
-      t4: "Team 4 - The Sleepy Queens",
-    };
-    
-    const DATA = {
-      leagueName: "Village Green Community Darts League",
-      formUrl: "YOUR_GOOGLE_FORM_URL",
-      
-      standings: {
-        men: {
-          teams: [
-            // name, played, won, drawn, lost, legsFor, legsAgainst, points
-            { name: TEAMS.t1, P: 3, W: 3, D: 0, L: 0, LF: 24, LA: 12, Pts: 9 },
-            { name: TEAMS.t2, P: 3, W: 1, D: 0, L: 2, LF: 16, LA: 20, Pts: 3 },
-            { name: TEAMS.t3, P: 3, W: 0, D: 1, L: 2, LF: 12, LA: 20, Pts: 1 }
-          ],
-          individuals: [
-            // player, team, played, won, lost, legsFor, legsAgainst, points
-            { player: "Drew", team: TEAMS.t1, P: 6, W: 5, L: 1, LF: 15, LA: 7, Pts: 5 },
-            { player: "Phil", team: TEAMS.t2, P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
-            { player: "Sev", team: TEAMS.t3, P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
-          ]
-        },
-        women: {
-          teams: [
-            { name: TEAMS.t4, P: 3, W: 2, D: 1, L: 0, LF: 22, LA: 14, Pts: 7 },
-            { name: "Night Owls", P: 3, W: 1, D: 1, L: 1, LF: 19, LA: 18, Pts: 4 },
-            { name: "Rose Buds", P: 3, W: 0, D: 0, L: 3, LF: 11, LA: 20, Pts: 0 }
-          ],
-          individuals: [
-            { player: "Lee", team: TEAMS.t4, P: 6, W: 5, L: 1, LF: 16, LA: 8, Pts: 5 },
-            { player: "Val", team: "Night Owls", P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
-            { player: "Bailey", team: "Rose Buds", P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
-          ]
-        }
+    t1: "Team 1 - Tall Boyz",
+    t2: "Team 2 - Jorkers",
+    t3: "Team 3 - Tech Wizards",
+    t4: "Team 4 - The Sleepy Queens",
+  };
+
+  const DATA = {
+    leagueName: "Village Green Community Darts League",
+    formUrl: "YOUR_GOOGLE_FORM_URL",
+
+    standings: {
+      men: {
+        teams: [
+          { name: TEAMS.t1, P: 3, W: 3, D: 0, L: 0, LF: 24, LA: 12, Pts: 9 },
+          { name: TEAMS.t2, P: 3, W: 1, D: 0, L: 2, LF: 16, LA: 20, Pts: 3 },
+          { name: TEAMS.t3, P: 3, W: 0, D: 1, L: 2, LF: 12, LA: 20, Pts: 1 }
+        ],
+        individuals: [
+          { player: "Drew", team: TEAMS.t1, P: 6, W: 5, L: 1, LF: 15, LA: 7, Pts: 5 },
+          { player: "Phil", team: TEAMS.t2, P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
+          { player: "Sev",  team: TEAMS.t3, P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
+        ]
+      },
+      women: {
+        teams: [
+          { name: TEAMS.t4, P: 3, W: 2, D: 1, L: 0, LF: 22, LA: 14, Pts: 7 },
+          { name: "Night Owls", P: 3, W: 1, D: 1, L: 1, LF: 19, LA: 18, Pts: 4 },
+          { name: "Rose Buds",  P: 3, W: 0, D: 0, L: 3, LF: 11, LA: 20, Pts: 0 }
+        ],
+        individuals: [
+          { player: "Lee",   team: TEAMS.t4, P: 6, W: 5, L: 1, LF: 16, LA: 8, Pts: 5 },
+          { player: "Val",   team: "Night Owls", P: 6, W: 3, L: 3, LF: 12, LA: 12, Pts: 3 },
+          { player: "Bailey",team: "Rose Buds",  P: 6, W: 2, L: 4, LF: 10, LA: 14, Pts: 2 }
+        ]
       }
-    };
-
-    const SETTINGS = { venue: "Village Green Community Centre", time: "19:00" };
-
-    // 1) Define nights with pairings
-    const NIGHTS = [
-      { date: "2025-09-05", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
-      { date: "2025-09-12", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
-      { date: "2025-09-19", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
-    ];
-
-    /* ====== RENDERING LOGIC (no need to edit) ====== */
-    const $ = sel => document.querySelector(sel);
-
-    const autoSchedule = NIGHTS.flatMap(n =>
-      n.matches.map(([a,b]) => ({
-        date: n.date,
-        time: SETTINGS.time,
-        vs: [a,b],
-        venue: SETTINGS.venue
-      }))
-    );
-
-    function fmtDate(iso){
-      const d = new Date(iso + "T00:00:00");
-      return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
     }
+  };
 
-    function scheduleTable(nights){
-      const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date);
-      let html = `<table aria-label="Schedule"><thead><tr>
-        <th>Date</th><th>Time</th><th>Matchup</th><th>Venue</th></tr></thead><tbody>`;
-      for (const n of sorted){
-        const time  = n.time  || SETTINGS.time;
-        const venue = n.venue || SETTINGS.venue || "";
-        const matchups = n.matches
-          .map(([a,b]) => `${a} <span class="muted">vs</span> ${b}`)
-          .join(` <span class="muted">||</span> `);
-        html += `<tr>
-          <td>${fmtDate(n.date)}</td>
-          <td>${time}</td>
-          <td>${matchups}</td>
-          <td>${venue}</td>
-        </tr>`;
-      }
-      html += `</tbody></table>`;
-      return html;
+  const SETTINGS = { venue: "Village Green Community Centre", time: "19:00" };
+
+  // One row per night, combined matchups
+  const NIGHTS = [
+    { date: "2025-09-05", matches: [ [TEAMS.t1,TEAMS.t2], [TEAMS.t3,TEAMS.t4] ] },
+    { date: "2025-09-12", matches: [ [TEAMS.t1,TEAMS.t3], [TEAMS.t2,TEAMS.t4] ] },
+    { date: "2025-09-19", matches: [ [TEAMS.t1,TEAMS.t4], [TEAMS.t2,TEAMS.t3] ] },
+  ];
+
+  const $ = sel => document.querySelector(sel);
+
+  function fmtDate(iso){
+    const d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString(undefined, {year:'numeric', month:'short', day:'numeric'});
+  }
+
+  // Render nights as a single row per date
+  function scheduleTable(nights){
+    const sorted = [...nights].sort((a,b)=> a.date.localeCompare(b.date));
+    let html = `<table aria-label="Schedule"><thead><tr>
+      <th>Date</th><th>Time</th><th>Matchups</th><th>Venue</th></tr></thead><tbody>`;
+    for (const n of sorted){
+      const time  = n.time  || SETTINGS.time;
+      const venue = n.venue || SETTINGS.venue || "";
+      const matchups = n.matches
+        .map(([a,b]) => `${a} <span class="muted">vs</span> ${b}`)
+        .join(` <span class="muted">||</span> `);
+      html += `<tr>
+        <td>${fmtDate(n.date)}</td>
+        <td>${time}</td>
+        <td>${matchups}</td>
+        <td>${venue}</td>
+      </tr>`;
     }
+    html += `</tbody></table>`;
+    return html;
+  }
 
-    function computeDiff(item){
-      const diff = (item.LF ?? 0) - (item.LA ?? 0);
-      return diff;
+  // (keep your computeDiff / standingsTable / setActive as-is)
+
+  function render(){
+    $("#leagueName").textContent = DATA.leagueName;
+    $("#leagueNameFoot").textContent = DATA.leagueName;
+    $("#updated").textContent = "Updated " + new Date().toLocaleString();
+    $("#year").textContent = new Date().getFullYear();
+    $("#reportBtn").href = DATA.formUrl || "#";
+
+    $("#scheduleTable").innerHTML = scheduleTable(NIGHTS);
+
+    const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
+    const chipTeams = $("#chip-teams"), chipInd = $("#chip-individuals");
+    let division = "men", tableType = "teams";
+    function refreshStandings(){
+      const data = DATA.standings[division][tableType];
+      $("#standingsTable").innerHTML = standingsTable(data, tableType);
     }
+    tabMen.addEventListener("click", ()=>{ division="men"; setActive([tabMen,tabWomen], tabMen); refreshStandings(); });
+    tabWomen.addEventListener("click", ()=>{ division="women"; setActive([tabMen,tabWomen], tabWomen); refreshStandings(); });
+    chipTeams.addEventListener("click", ()=>{ tableType="teams"; setActive([chipTeams,chipInd], chipTeams); refreshStandings(); });
+    chipInd.addEventListener("click", ()=>{ tableType="individuals"; setActive([chipTeams,chipInd], chipInd); refreshStandings(); });
 
-    function standingsTable(items, type){
-      // Sort: Points desc -> Diff desc -> Name/Player asc
-      const sorted = [...items].sort((a,b)=>{
-        const diffA = computeDiff(a), diffB = computeDiff(b);
-        if ((b.Pts ?? 0) !== (a.Pts ?? 0)) return (b.Pts ?? 0) - (a.Pts ?? 0);
-        if (diffB !== diffA) return diffB - diffA;
-        const keyA = (type==="teams" ? a.name : a.player) || "";
-        const keyB = (type==="teams" ? b.name : b.player) || "";
-        return keyA.localeCompare(keyB);
-      });
+    refreshStandings();
+  }
 
-      let head, rows;
-      if(type==="teams"){
-        head = `<tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
-        rows = sorted.map((t,i)=>`
-          <tr>
-            <td class="pos">${i+1}</td>
-            <td>${t.name}</td>
-            <td class="num">${t.P??0}</td><td class="num">${t.W??0}</td><td class="num">${t.D??0}</td><td class="num">${t.L??0}</td>
-            <td class="num">${t.LF??0}</td><td class="num">${t.LA??0}</td>
-            <td class="num">${computeDiff(t)}</td>
-            <td class="num"><strong>${t.Pts??0}</strong></td>
-          </tr>`).join("");
-      }else{
-        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
-        rows = sorted.map((p,i)=>`
-          <tr>
-            <td class="pos">${i+1}</td>
-            <td>${p.player}</td><td>${p.team||""}</td>
-            <td class="num">${p.P??0}</td><td class="num">${p.W??0}</td><td class="num">${p.L??0}</td>
-            <td class="num">${p.LF??0}</td><td class="num">${p.LA??0}</td>
-            <td class="num">${computeDiff(p)}</td>
-            <td class="num"><strong>${p.Pts??0}</strong></td>
-          </tr>`).join("");
-      }
-
-      return `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
-    }
-
-    function setActive(btns, active){
-      btns.forEach(b=>b.classList.toggle("active", b===active));
-    }
-
-    function render(){
-      $("#leagueName").textContent = DATA.leagueName;
-      $("#leagueNameFoot").textContent = DATA.leagueName;
-      $("#updated").textContent = "Updated " + new Date().toLocaleString();
-      $("#year").textContent = new Date().getFullYear();
-      $("#reportBtn").href = DATA.formUrl || "#";
-
-      // Schedule
-      $("#scheduleTable").innerHTML = scheduleTable(NIGHTS);
-
-      // Standings (tabs)
-      const tabMen = $("#tab-men"), tabWomen = $("#tab-women");
-      const chipTeams = $("#chip-teams"), chipInd = $("#chip-individuals");
-      let division = "men";
-      let tableType = "teams";
-
-      function refreshStandings(){
-        const data = DATA.standings[division][tableType];
-        $("#standingsTable").innerHTML = standingsTable(data, tableType);
-      }
-
-      tabMen.addEventListener("click", ()=>{ division="men"; setActive([tabMen,tabWomen], tabMen); refreshStandings(); });
-      tabWomen.addEventListener("click", ()=>{ division="women"; setActive([tabMen,tabWomen], tabWomen); refreshStandings(); });
-      chipTeams.addEventListener("click", ()=>{ tableType="teams"; setActive([chipTeams,chipInd], chipTeams); refreshStandings(); });
-      chipInd.addEventListener("click", ()=>{ tableType="individuals"; setActive([chipTeams,chipInd], chipInd); refreshStandings(); });
-
-      refreshStandings();
-    }
-
-    render();
-  </script>
+  render();
+</script>
 </body>
 </html>
