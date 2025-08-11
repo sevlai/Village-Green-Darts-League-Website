@@ -209,15 +209,15 @@
         const venue = n.venue || SETTINGS.venue || "";
         const matchups = n.matches
           .map(([a,b]) => `${a} <span class="muted">vs</span> ${b}`)
-          .join( <span class="muted">||</span> );
-        html += <tr>
+          .join(` <span class="muted">||</span> `);
+        html += `<tr>
           <td>${fmtDate(n.date)}</td>
           <td>${time}</td>
           <td>${matchups}</td>
           <td>${venue}</td>
-        </tr>;
+        </tr>`;
       }
-      html += "</tbody></table>";
+      html += `</tbody></table>`;
       return html;
     }
 
