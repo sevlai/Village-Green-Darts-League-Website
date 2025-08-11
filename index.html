@@ -239,8 +239,8 @@
 
       let head, rows;
       if(type==="teams"){
-        head = <tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>;
-        rows = sorted.map((t,i)=>
+        head = `<tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+        rows = sorted.map((t,i)=>`
           <tr>
             <td class="pos">${i+1}</td>
             <td>${t.name}</td>
@@ -248,10 +248,10 @@
             <td class="num">${t.LF??0}</td><td class="num">${t.LA??0}</td>
             <td class="num">${computeDiff(t)}</td>
             <td class="num"><strong>${t.Pts??0}</strong></td>
-          </tr>).join("");
+          </tr>`).join("");
       }else{
-        head = <tr><th>#</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>;
-        rows = sorted.map((p,i)=>
+        head = `<tr><th>#</th><th>Player</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">L</th><th class="num">LF</th><th class="num">LA</th><th class="num">Diff</th><th class="num">Pts</th></tr>`;
+        rows = sorted.map((p,i)=>`
           <tr>
             <td class="pos">${i+1}</td>
             <td>${p.player}</td><td>${p.team||""}</td>
@@ -259,10 +259,10 @@
             <td class="num">${p.LF??0}</td><td class="num">${p.LA??0}</td>
             <td class="num">${computeDiff(p)}</td>
             <td class="num"><strong>${p.Pts??0}</strong></td>
-          </tr>).join("");
+          </tr>`).join("");
       }
 
-      return <table><thead>${head}</thead><tbody>${rows}</tbody></table>;
+      return `<table><thead>${head}</thead><tbody>${rows}</tbody></table>`;
     }
 
     function setActive(btns, active){
